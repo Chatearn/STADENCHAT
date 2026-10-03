@@ -1,1 +1,285 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Verify Code | STADENCHAT</title>
+
+    <meta name="description" content="Verify your STADENCHAT account with the code sent to your phone.">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7fa;
+            color: #111111;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 20px;
+        }
+
+        .verify-container {
+            width: 100%;
+            max-width: 460px;
+        }
+
+        .verify-card {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 38px 35px;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.10);
+            border: 0.5cm solid #1877F2;
+        }
+
+        .logo-area {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .logo-area img {
+            width: 210px;
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .heading {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .heading h1 {
+            font-size: 30px;
+            font-weight: 800;
+            color: #111111;
+            margin-bottom: 8px;
+        }
+
+        .heading p {
+            font-size: 15px;
+            color: #666666;
+            line-height: 1.5;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 700;
+            color: #111111;
+            margin-bottom: 8px;
+        }
+
+        .form-group input {
+            width: 100%;
+            height: 55px;
+            padding: 0 15px;
+            border: 1px solid #d5d5d5;
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: 700;
+            text-align: center;
+            letter-spacing: 8px;
+            color: #111111;
+            background: #ffffff;
+            outline: none;
+            transition: 0.2s ease;
+        }
+
+        .form-group input:focus {
+            border-color: #1877F2;
+            box-shadow: 0 0 0 3px rgba(24, 119, 242, 0.10);
+        }
+
+        .verify-btn {
+            width: 100%;
+            height: 52px;
+            border: none;
+            border-radius: 10px;
+            background: #1877F2;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .verify-btn:hover {
+            background: #0d6be0;
+        }
+
+        .resend-area {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666666;
+        }
+
+        .resend-area a {
+            color: #1877F2;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .resend-area a:hover {
+            text-decoration: underline;
+        }
+
+        .login-area {
+            text-align: center;
+            margin-top: 18px;
+            font-size: 14px;
+            color: #666666;
+        }
+
+        .login-area a {
+            color: #1877F2;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .login-area a:hover {
+            text-decoration: underline;
+        }
+
+        .back-home {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .back-home a {
+            color: #111111;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .back-home a:hover {
+            color: #1877F2;
+        }
+
+        @media (max-width: 500px) {
+            body {
+                padding: 20px 15px;
+            }
+
+            .verify-card {
+                padding: 30px 22px;
+                border-radius: 15px;
+            }
+
+            .logo-area img {
+                width: 185px;
+            }
+
+            .heading h1 {
+                font-size: 26px;
+            }
+
+            .heading p {
+                font-size: 14px;
+            }
+
+            .form-group input {
+                font-size: 18px;
+                letter-spacing: 6px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="verify-container">
+
+        <div class="verify-card">
+
+            <div class="logo-area">
+                <img src="stadenchat-logo.png" alt="STADENCHAT Logo">
+            </div>
+
+            <div class="heading">
+                <h1>Verify Your Code</h1>
+                <p>Enter the verification code sent to your registered phone number.</p>
+            </div>
+
+            <form id="verifyForm">
+
+                <div class="form-group">
+                    <label for="otp">Verification Code</label>
+                    <input
+                        type="text"
+                        id="otp"
+                        name="otp"
+                        placeholder="••••••"
+                        maxlength="6"
+                        inputmode="numeric"
+                        autocomplete="one-time-code"
+                        required
+                    >
+                </div>
+
+                <button type="submit" class="verify-btn">
+                    Verify Code
+                </button>
+
+            </form>
+
+            <div class="resend-area">
+                Didn't receive the code?
+                <a href="#" id="resendCode">Resend Code</a>
+            </div>
+
+            <div class="login-area">
+                <a href="login.html">Back to Login</a>
+            </div>
+
+        </div>
+
+        <div class="back-home">
+            <a href="index.html">← Back to STADENCHAT</a>
+        </div>
+
+    </div>
+
+    <script>
+        document.getElementById("verifyForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const otp = document.getElementById("otp").value.trim();
+
+            if (!otp) {
+                alert("Please enter the verification code.");
+                return;
+            }
+
+            if (!/^\d{6}$/.test(otp)) {
+                alert("Please enter the 6-digit verification code.");
+                return;
+            }
+
+            alert("Verification will be connected to the STADENCHAT backend next.");
+        });
+
+        document.getElementById("resendCode").addEventListener("click", function(event) {
+            event.preventDefault();
+
+            alert("Resend verification code will be connected to the STADENCHAT backend next.");
+        });
+    </script>
+
+</body>
+</html>
