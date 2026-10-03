@@ -1,621 +1,1122 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>STADENCHAT - Connect. Communicate. Belong.</title>
-
-    <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-        }
-
-        html{
-            scroll-behavior:smooth;
-        }
-
-        body{
-            font-family:Arial, Helvetica, sans-serif;
-            background:#ffffff;
-            color:#111111;
-            line-height:1.6;
-        }
-
-        a{
-            text-decoration:none;
-            color:inherit;
-        }
-
-        /* HEADER */
-
-        header{
-            width:100%;
-            background:#ffffff;
-            position:sticky;
-            top:0;
-            z-index:1000;
-            border-bottom:1px solid #eeeeee;
-        }
-
-        .navbar{
-            max-width:1250px;
-            margin:auto;
-            padding:20px 28px;
-            min-height:150px;
-            display:flex;
-            align-items:center;
-            justify-content:space-between;
-            gap:30px;
-        }
-
-        .logo{
-            display:flex;
-            align-items:center;
-        }
-
-        .logo img{
-            width:690px;
-            max-width:100%;
-            height:auto;
-            max-height:135px;
-            object-fit:contain;
-            display:block;
-        }
-
-        .nav-links{
-            display:flex;
-            align-items:center;
-            gap:35px;
-            margin-left:auto;
-        }
-
-        .nav-links a{
-            font-size:15px;
-            font-weight:600;
-            color:#111111;
-            transition:0.3s;
-        }
-
-        .nav-links a:hover{
-            color:#1877F2;
-        }
-
-        .nav-actions{
-            display:flex;
-            align-items:center;
-            gap:12px;
-        }
-
-        .login-btn{
-            padding:11px 20px;
-            border:1.5px solid #1877F2;
-            border-radius:8px;
-            color:#1877F2;
-            font-weight:700;
-        }
-
-        .signup-btn{
-            padding:12px 21px;
-            background:#1877F2;
-            color:#ffffff;
-            border-radius:8px;
-            font-weight:700;
-        }
-
-        .menu-btn{
-            display:none;
-            background:none;
-            border:none;
-            font-size:29px;
-            cursor:pointer;
-            color:#111111;
-        }
-
-        /* HERO */
-
-        .hero{
-            background:#1877F2;
-            color:#ffffff;
-            padding:85px 28px;
-        }
-
-        .hero-container{
-            max-width:1200px;
-            margin:auto;
-            display:grid;
-            grid-template-columns:1fr 1fr;
-            align-items:center;
-            gap:60px;
-        }
-
-        .hero-content{
-            max-width:600px;
-        }
-
-        .hero-badge{
-            display:inline-block;
-            background:rgba(255,255,255,0.15);
-            border:1px solid rgba(255,255,255,0.3);
-            padding:7px 14px;
-            border-radius:30px;
-            font-size:14px;
-            font-weight:600;
-            margin-bottom:22px;
-        }
-
-        .hero h1{
-            font-size:64px;
-            line-height:1.02;
-            letter-spacing:-2px;
-            margin-bottom:22px;
-        }
-
-        .hero p{
-            font-size:18px;
-            line-height:1.7;
-            max-width:570px;
-            margin-bottom:32px;
-            color:rgba(255,255,255,0.95);
-        }
-
-        .hero-buttons{
-            display:flex;
-            gap:14px;
-            flex-wrap:wrap;
-        }
-
-        .primary-btn{
-            background:#ffffff;
-            color:#1877F2;
-            padding:14px 24px;
-            border-radius:9px;
-            font-weight:700;
-        }
-
-        .secondary-btn{
-            border:1px solid rgba(255,255,255,0.7);
-            color:#ffffff;
-            padding:14px 24px;
-            border-radius:9px;
-            font-weight:700;
-        }
-
-        /* PHONE PREVIEW */
-
-        .hero-preview{
-            display:flex;
-            justify-content:center;
-            align-items:center;
-        }
-
-        .phone{
-            width:310px;
-            background:#111111;
-            border-radius:30px;
-            padding:10px;
-            box-shadow:0 25px 60px rgba(0,0,0,0.25);
-        }
-
-        .phone-screen{
-            border-radius:22px;
-            overflow:hidden;
-            background:#f7f9fc;
-        }
-
-        .phone-header{
-            background:#1877F2;
-            color:#ffffff;
-            padding:20px;
-            font-weight:700;
-            font-size:18px;
-            text-align:center;
-        }
-
-        .phone-logo{
-            display:block;
-            width:150px;
-            max-width:100%;
-            height:auto;
-            max-height:65px;
-            object-fit:contain;
-            margin:12px auto 0;
-            background:#ffffff;
-            border-radius:8px;
-            padding:5px;
-        }
-
-        .phone-content{
-            padding:20px;
-        }
-
-        .phone-title{
-            font-size:16px;
-            font-weight:700;
-            margin-bottom:15px;
-        }
-
-        .online-users{
-            display:flex;
-            gap:8px;
-            margin-bottom:25px;
-        }
-
-        .avatar{
-            width:38px;
-            height:38px;
-            border-radius:50%;
-            background:#1877F2;
-            border:3px solid #ffffff;
-            box-shadow:0 0 0 1px #dddddd;
-        }
-
-        .community-title{
-            font-size:15px;
-            font-weight:700;
-            margin-bottom:10px;
-        }
-
-        .community{
-            background:#ffffff;
-            padding:13px;
-            border-radius:10px;
-            margin-bottom:9px;
-            border:1px solid #eeeeee;
-        }
-
-        .community strong{
-            display:block;
-            font-size:14px;
-        }
-
-        .community span{
-            font-size:12px;
-            color:#777777;
-        }
-
-        /* TRUST */
-
-        .trust-strip{
-            background:#ffffff;
-            border-bottom:1px solid #eeeeee;
-        }
-
-        .trust-container{
-            max-width:1100px;
-            margin:auto;
-            padding:22px 25px;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            gap:60px;
-            flex-wrap:wrap;
-        }
-
-        .trust-item{
-            display:flex;
-            align-items:center;
-            gap:10px;
-            font-weight:600;
-            color:#333333;
-            font-size:14px;
-        }
-
-        .trust-icon{
-            width:30px;
-            height:30px;
-            border-radius:50%;
-            background:#1877F2;
-            color:#ffffff;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            font-size:14px;
-        }
-
-        /* FEATURES */
-
-        .features{
-            padding:85px 25px;
-            background:#ffffff;
-        }
-
-        .section-container{
-            max-width:1200px;
-            margin:auto;
-        }
-
-        .section-heading{
-            text-align:center;
-            max-width:700px;
-            margin:0 auto 50px;
-        }
-
-        .section-heading h2{
-            font-size:42px;
-            line-height:1.2;
-            margin-bottom:15px;
-        }
-
-        .section-heading h2 span{
-            color:#1877F2;
-        }
-
-        .section-heading p{
-            color:#666666;
-            font-size:17px;
-        }
-
-        .feature-grid{
-            display:grid;
-            grid-template-columns:repeat(4,1fr);
-            gap:22px;
-        }
-
-        .feature-card{
-            border:1px solid #e8e8e8;
-            border-radius:14px;
-            padding:30px 24px;
-            background:#ffffff;
-        }
-
-        .feature-icon{
-            width:48px;
-            height:48px;
-            border-radius:12px;
-            background:#1877F2;
-            color:#ffffff;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            font-size:21px;
-            margin-bottom:20px;
-        }
-
-        .feature-card h3{
-            font-size:19px;
-            margin-bottom:10px;
-        }
-
-        .feature-card p{
-            color:#666666;
-            font-size:14px;
-            line-height:1.7;
-        }
-
-        /* RESPONSIVE */
-
-        @media(max-width:950px){
-
-            .hero-container{
-                grid-template-columns:1fr;
-                text-align:center;
-            }
-
-            .hero-content{
-                margin:auto;
-            }
-
-            .hero p{
-                margin-left:auto;
-                margin-right:auto;
-            }
-
-            .hero-buttons{
-                justify-content:center;
-            }
-
-            .feature-grid{
-                grid-template-columns:repeat(2,1fr);
-            }
-        }
-
-        @media(max-width:700px){
-
-            .navbar{
-                padding:15px 18px;
-                min-height:120px;
-            }
-
-            .logo img{
-                width:570px;
-                max-width:100%;
-                max-height:105px;
-            }
-
-            .nav-links,
-            .nav-actions{
-                display:none;
-            }
-
-            .menu-btn{
-                display:block;
-            }
-
-            .hero{
-                padding:65px 20px;
-            }
-
-            .hero h1{
-                font-size:48px;
-            }
-
-            .hero p{
-                font-size:16px;
-            }
-
-            .phone{
-                width:285px;
-            }
-
-            .phone-logo{
-                width:135px;
-                max-height:58px;
-            }
-
-            .trust-container{
-                gap:20px;
-                justify-content:flex-start;
-            }
-
-            .features{
-                padding:65px 20px;
-            }
-
-            .section-heading h2{
-                font-size:34px;
-            }
-
-            .feature-grid{
-                grid-template-columns:1fr;
-            }
-        }
-
-        @media(max-width:400px){
-
-            .navbar{
-                min-height:105px;
-            }
-
-            .logo img{
-                width:525px;
-                max-width:100%;
-                max-height:90px;
-            }
-
-            .hero h1{
-                font-size:42px;
-            }
-
-            .phone{
-                width:265px;
-            }
-
-            .phone-logo{
-                width:125px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description" content="STADENCHAT - Chat, connect and discover communities.">
+
+<meta name="theme-color" content="#1877F2">
+
+<title>STADENCHAT | Chat. Connect. Belong.</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#ffffff;
+    color:#111111;
+    line-height:1.6;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+button{
+    font-family:inherit;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:#ffffff;
+    border-bottom:1px solid #e8e8e8;
+}
+
+.navbar{
+    max-width:1200px;
+    height:76px;
+    margin:auto;
+    padding:0 24px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo img{
+    width:145px;
+    display:block;
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:30px;
+}
+
+.nav-links a{
+    font-size:14px;
+    font-weight:700;
+    color:#222222;
+    transition:.25s;
+}
+
+.nav-links a:hover{
+    color:#1877F2;
+}
+
+.nav-actions{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.login-btn{
+    padding:10px 20px;
+    border:1.5px solid #1877F2;
+    border-radius:8px;
+    color:#1877F2;
+    font-weight:700;
+}
+
+.login-btn:hover{
+    background:#1877F2;
+    color:#ffffff;
+}
+
+.signup-btn{
+    padding:11px 21px;
+    border-radius:8px;
+    background:#1877F2;
+    color:#ffffff;
+    font-weight:700;
+}
+
+.signup-btn:hover{
+    background:#0d65d9;
+}
+
+.menu-btn{
+    display:none;
+    border:0;
+    background:none;
+    font-size:28px;
+    cursor:pointer;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    position:relative;
+    overflow:hidden;
+    background:#1877F2;
+    color:#ffffff;
+}
+
+.hero::before{
+    content:"";
+    position:absolute;
+    width:500px;
+    height:500px;
+    border-radius:50%;
+    background:rgba(255,255,255,.07);
+    top:-250px;
+    right:-150px;
+}
+
+.hero::after{
+    content:"";
+    position:absolute;
+    width:350px;
+    height:350px;
+    border-radius:50%;
+    background:rgba(0,0,0,.07);
+    bottom:-200px;
+    left:-120px;
+}
+
+.hero-container{
+    position:relative;
+    z-index:2;
+
+    max-width:1200px;
+    min-height:600px;
+    margin:auto;
+    padding:70px 24px;
+
+    display:grid;
+    grid-template-columns:1.05fr .95fr;
+    align-items:center;
+    gap:70px;
+}
+
+.hero-content{
+    max-width:620px;
+}
+
+.hero-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+
+    padding:7px 13px;
+    margin-bottom:20px;
+
+    border:1px solid rgba(255,255,255,.35);
+    border-radius:30px;
+
+    background:rgba(255,255,255,.1);
+
+    font-size:13px;
+    font-weight:700;
+}
+
+.hero-badge span{
+    width:8px;
+    height:8px;
+    background:#ffffff;
+    border-radius:50%;
+}
+
+.hero h1{
+    font-size:62px;
+    line-height:1.02;
+    letter-spacing:-2px;
+    margin-bottom:22px;
+    font-weight:800;
+}
+
+.hero h1 span{
+    color:#ffffff;
+}
+
+.hero-text{
+    max-width:580px;
+    color:#f5f8ff;
+    font-size:18px;
+    line-height:1.7;
+    margin-bottom:30px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:13px;
+    flex-wrap:wrap;
+}
+
+.primary-btn{
+    background:#ffffff;
+    color:#1877F2;
+    padding:14px 25px;
+    border-radius:8px;
+    font-weight:800;
+    transition:.25s;
+}
+
+.primary-btn:hover{
+    transform:translateY(-2px);
+}
+
+.secondary-btn{
+    border:2px solid #ffffff;
+    color:#ffffff;
+    padding:12px 25px;
+    border-radius:8px;
+    font-weight:800;
+    transition:.25s;
+}
+
+.secondary-btn:hover{
+    background:#ffffff;
+    color:#1877F2;
+}
+
+/* =========================
+   HERO APP PREVIEW
+========================= */
+
+.preview-area{
+    display:flex;
+    justify-content:center;
+}
+
+.app-preview{
+    width:340px;
+    background:#ffffff;
+    border:7px solid #111111;
+    border-radius:34px;
+    overflow:hidden;
+
+    box-shadow:
+        0 30px 70px rgba(0,0,0,.28);
+}
+
+.app-header{
+    padding:20px;
+    background:#1877F2;
+    color:#ffffff;
+}
+
+.app-header-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.app-header strong{
+    font-size:20px;
+}
+
+.menu-dots{
+    font-size:20px;
+}
+
+.app-header small{
+    display:block;
+    margin-top:4px;
+    opacity:.9;
+}
+
+/* =========================
+   PHONE LOGO
+========================= */
+
+.phone-logo{
+    padding:24px 20px 18px;
+    background:#ffffff;
+    text-align:center;
+    border-bottom:1px solid #eeeeee;
+}
+
+.phone-logo img{
+    width:190px;
+    max-width:100%;
+    height:auto;
+    display:block;
+    margin:auto;
+}
+
+/* =========================
+   PHONE CONTENT
+========================= */
+
+.online-box{
+    padding:17px;
+    border-bottom:1px solid #eeeeee;
+}
+
+.section-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:13px;
+}
+
+.section-row strong{
+    font-size:14px;
+}
+
+.section-row a{
+    color:#1877F2;
+    font-size:12px;
+    font-weight:700;
+}
+
+.online-users{
+    display:flex;
+    gap:11px;
+}
+
+.avatar{
+    position:relative;
+    width:43px;
+    height:43px;
+    border-radius:50%;
+    background:#e9edf3;
+    border:2px solid #1877F2;
+}
+
+.avatar::after{
+    content:"";
+    position:absolute;
+    right:-2px;
+    bottom:0;
+
+    width:10px;
+    height:10px;
+
+    background:#1877F2;
+    border:2px solid #ffffff;
+    border-radius:50%;
+}
+
+.chat-list{
+    padding:8px 17px 17px;
+}
+
+.chat-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:13px 0;
+    border-bottom:1px solid #eeeeee;
+}
+
+.chat-avatar{
+    width:44px;
+    height:44px;
+    border-radius:12px;
+    background:#1877F2;
+    color:#ffffff;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-weight:800;
+}
+
+.chat-info{
+    flex:1;
+}
+
+.chat-info strong{
+    display:block;
+    font-size:14px;
+}
+
+.chat-info small{
+    color:#777777;
+    font-size:11px;
+}
+
+.chat-time{
+    color:#999999;
+    font-size:10px;
+}
+
+/* =========================
+   TRUST STRIP
+========================= */
+
+.trust-strip{
+    border-bottom:1px solid #eeeeee;
+    background:#ffffff;
+}
+
+.trust-container{
+    max-width:1050px;
+    margin:auto;
+    padding:22px 24px;
+
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.trust-item{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    font-size:13px;
+    font-weight:700;
+    color:#333333;
+}
+
+.trust-icon{
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    background:#1877F2;
+    color:#ffffff;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:13px;
+}
+
+/* =========================
+   SECTION
+========================= */
+
+.section{
+    padding:85px 24px;
+}
+
+.section-heading{
+    max-width:700px;
+    margin:auto;
+    text-align:center;
+}
+
+.section-heading h2{
+    font-size:38px;
+    line-height:1.2;
+    margin-bottom:13px;
+}
+
+.section-heading h2 span{
+    color:#1877F2;
+}
+
+.section-heading p{
+    color:#666666;
+    font-size:16px;
+}
+
+/* =========================
+   FEATURES
+========================= */
+
+.feature-grid{
+    max-width:1100px;
+    margin:48px auto 0;
+
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.feature-card{
+    padding:30px 22px;
+    border:1px solid #e5e5e5;
+    border-radius:14px;
+    background:#ffffff;
+
+    transition:.25s;
+}
+
+.feature-card:hover{
+    transform:translateY(-5px);
+    border-color:#1877F2;
+    box-shadow:0 12px 35px rgba(0,0,0,.08);
+}
+
+.feature-icon{
+    width:55px;
+    height:55px;
+    margin-bottom:19px;
+
+    background:#1877F2;
+    color:#ffffff;
+    border-radius:12px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:22px;
+    font-weight:800;
+}
+
+.feature-card h3{
+    font-size:18px;
+    margin-bottom:9px;
+}
+
+.feature-card p{
+    color:#666666;
+    font-size:14px;
+}
+
+/* =========================
+   GROUPS
+========================= */
+
+.groups-section{
+    background:#f7f9fc;
+}
+
+.group-grid{
+    max-width:1050px;
+    margin:48px auto 0;
+
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:24px;
+}
+
+.group-card{
+    padding:32px;
+    background:#ffffff;
+    border:1px solid #e2e2e2;
+    border-radius:15px;
+}
+
+.group-card.private{
+    background:#111111;
+    color:#ffffff;
+    border-color:#111111;
+}
+
+.group-top{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    margin-bottom:18px;
+}
+
+.group-icon{
+    width:55px;
+    height:55px;
+    flex-shrink:0;
+
+    border-radius:13px;
+    background:#1877F2;
+    color:#ffffff;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:22px;
+    font-weight:800;
+}
+
+.group-card h3{
+    font-size:21px;
+}
+
+.group-label{
+    display:inline-block;
+    margin-top:3px;
+    color:#1877F2;
+    font-size:11px;
+    font-weight:800;
+    text-transform:uppercase;
+}
+
+.group-card p{
+    color:#666666;
+    font-size:14px;
+    margin-bottom:22px;
+}
+
+.group-card.private p{
+    color:#cccccc;
+}
+
+.group-button{
+    display:inline-block;
+    background:#1877F2;
+    color:#ffffff;
+    padding:11px 19px;
+    border-radius:7px;
+    font-size:13px;
+    font-weight:800;
+}
+
+/* =========================
+   HOW IT WORKS
+========================= */
+
+.steps{
+    max-width:1000px;
+    margin:50px auto 0;
+
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:35px;
+}
+
+.step{
+    text-align:center;
+}
+
+.step-number{
+    width:56px;
+    height:56px;
+    margin:0 auto 18px;
+
+    border-radius:50%;
+    background:#1877F2;
+    color:#ffffff;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:19px;
+    font-weight:800;
+}
+
+.step h3{
+    margin-bottom:8px;
+    font-size:18px;
+}
+
+.step p{
+    color:#666666;
+    font-size:14px;
+}
+
+/* =========================
+   CTA
+========================= */
+
+.cta{
+    padding:75px 24px;
+    background:#1877F2;
+    color:#ffffff;
+    text-align:center;
+}
+
+.cta h2{
+    font-size:40px;
+    margin-bottom:12px;
+}
+
+.cta p{
+    max-width:650px;
+    margin:0 auto 27px;
+    color:#f2f6ff;
+}
+
+.cta-button{
+    display:inline-block;
+    background:#ffffff;
+    color:#1877F2;
+    padding:14px 28px;
+    border-radius:8px;
+    font-weight:800;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    background:#111111;
+    color:#ffffff;
+    padding:55px 24px 20px;
+}
+
+.footer-grid{
+    max-width:1100px;
+    margin:auto;
+
+    display:grid;
+    grid-template-columns:1.5fr 1fr 1fr 1fr;
+    gap:40px;
+}
+
+.footer-brand img{
+    width:145px;
+    background:#ffffff;
+    padding:5px;
+    border-radius:5px;
+    margin-bottom:15px;
+}
+
+.footer-brand p{
+    max-width:300px;
+    color:#aaaaaa;
+    font-size:13px;
+}
+
+.footer-column h4{
+    margin-bottom:15px;
+    font-size:14px;
+}
+
+.footer-column a{
+    display:block;
+    color:#aaaaaa;
+    font-size:13px;
+    margin-bottom:9px;
+}
+
+.footer-column a:hover{
+    color:#ffffff;
+}
+
+.footer-bottom{
+    max-width:1100px;
+    margin:40px auto 0;
+    padding-top:20px;
+
+    border-top:1px solid #333333;
+
+    text-align:center;
+    color:#777777;
+    font-size:12px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:900px){
+
+    .nav-links{
+        display:none;
+    }
+
+    .menu-btn{
+        display:block;
+    }
+
+    .hero-container{
+        grid-template-columns:1fr;
+        text-align:center;
+        padding:60px 20px;
+    }
+
+    .hero-content{
+        margin:auto;
+    }
+
+    .hero-text{
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .hero-buttons{
+        justify-content:center;
+    }
+
+    .feature-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .footer-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:600px){
+
+    .navbar{
+        height:68px;
+        padding:0 15px;
+    }
+
+    .logo img{
+        width:125px;
+    }
+
+    .nav-actions{
+        display:none;
+    }
+
+    .hero h1{
+        font-size:43px;
+        letter-spacing:-1px;
+    }
+
+    .hero-text{
+        font-size:16px;
+    }
+
+    .app-preview{
+        width:290px;
+    }
+
+    .phone-logo img{
+        width:170px;
+    }
+
+    .trust-container{
+        grid-template-columns:1fr;
+        gap:14px;
+    }
+
+    .section{
+        padding:65px 18px;
+    }
+
+    .section-heading h2{
+        font-size:30px;
+    }
+
+    .feature-grid{
+        grid-template-columns:1fr;
+    }
+
+    .group-grid{
+        grid-template-columns:1fr;
+    }
+
+    .steps{
+        grid-template-columns:1fr;
+        gap:38px;
+    }
+
+    .cta{
+        padding:60px 20px;
+    }
+
+    .cta h2{
+        font-size:31px;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr;
+        gap:30px;
+    }
+
+}
+
+</style>
 </head>
 
 <body>
 
+
+<!-- =========================
+     HEADER
+========================= -->
+
 <header>
 
-    <div class="navbar">
+<div class="navbar">
 
-        <a href="index.html" class="logo">
-            <img src="stadenchat-logo.png" alt="STADENCHAT">
+    <a href="index.html" class="logo">
+        <img src="stadenchat-logo.png" alt="STADENCHAT">
+    </a>
+
+    <nav class="nav-links">
+
+        <a href="#features">Features</a>
+
+        <a href="#groups">Groups</a>
+
+        <a href="#how-it-works">How It Works</a>
+
+    </nav>
+
+    <div class="nav-actions">
+
+        <a href="login.html" class="login-btn">
+            Login
         </a>
 
-        <nav class="nav-links">
-            <a href="#features">Features</a>
-        </nav>
-
-        <div class="nav-actions">
-            <a href="login.html" class="login-btn">Login</a>
-            <a href="register.html" class="signup-btn">Create Account</a>
-        </div>
-
-        <button class="menu-btn" onclick="toggleMenu()">☰</button>
+        <a href="register.html" class="signup-btn">
+            Create Account
+        </a>
 
     </div>
+
+    <button class="menu-btn" onclick="toggleMenu()">
+        ☰
+    </button>
+
+</div>
 
 </header>
 
 
+<!-- =========================
+     HERO
+========================= -->
+
 <section class="hero">
 
-    <div class="hero-container">
+<div class="hero-container">
 
-        <div class="hero-content">
+    <div class="hero-content">
 
-            <div class="hero-badge">
-                Welcome to STADENCHAT
-            </div>
+        <div class="hero-badge">
+            <span></span>
+            Welcome to STADENCHAT
+        </div>
 
-            <h1>
-                <strong>
-                    CONNECT.<br>
-                    COMMUNICATE.<br>
-                    BELONG.
-                </strong>
-            </h1>
+        <h1>
+            Chat.<br>
+            Connect.<br>
+            Belong.
+        </h1>
 
-            <p>
-                Meet people, discover communities and join conversations
-                that matter to you. STADENCHAT brings people together
-                in one simple social platform.
-            </p>
+        <p class="hero-text">
+            Meet people, discover communities and join
+            conversations that matter to you. STADENCHAT
+            brings people together in one simple social
+            platform.
+        </p>
 
-            <div class="hero-buttons">
+        <div class="hero-buttons">
 
-                <a href="register.html" class="primary-btn">
-                    Create Your Account
-                </a>
+            <a href="register.html" class="primary-btn">
+                Create Your Account
+            </a>
 
-                <a href="login.html" class="secondary-btn">
-                    Login
-                </a>
-
-            </div>
+            <a href="login.html" class="secondary-btn">
+                Login
+            </a>
 
         </div>
 
+    </div>
 
-        <div class="hero-preview">
 
-            <div class="phone">
+    <!-- APP PREVIEW -->
 
-                <div class="phone-screen">
+    <div class="preview-area">
 
-                    <div class="phone-header">
-                        STADENCHAT
+        <div class="app-preview">
 
-                        <img
-                            src="stadenchat-logo.png"
-                            alt="STADENCHAT Logo"
-                            class="phone-logo"
-                        >
+            <div class="app-header">
+
+                <div class="app-header-row">
+
+                    <strong>STADENCHAT</strong>
+
+                    <span class="menu-dots">•••</span>
+
+                </div>
+
+                <small>
+                    Chat • Connect • Belong
+                </small>
+
+            </div>
+
+
+            <!-- BIG LOGO INSIDE PHONE -->
+
+            <div class="phone-logo">
+
+                <img src="stadenchat-logo.png" alt="STADENCHAT Logo">
+
+            </div>
+
+
+            <div class="online-box">
+
+                <div class="section-row">
+
+                    <strong>
+                        People Online
+                    </strong>
+
+                    <a href="#">
+                        View all
+                    </a>
+
+                </div>
+
+                <div class="online-users">
+
+                    <div class="avatar"></div>
+                    <div class="avatar"></div>
+                    <div class="avatar"></div>
+                    <div class="avatar"></div>
+                    <div class="avatar"></div>
+
+                </div>
+
+            </div>
+
+
+            <div class="chat-list">
+
+                <div class="section-row">
+
+                    <strong>
+                        Communities
+                    </strong>
+
+                    <a href="#">
+                        Explore
+                    </a>
+
+                </div>
+
+
+                <div class="chat-item">
+
+                    <div class="chat-avatar">
+                        G
                     </div>
 
-                    <div class="phone-content">
+                    <div class="chat-info">
 
-                        <div class="phone-title">
-                            Chat • Connect • Belong
-                        </div>
+                        <strong>
+                            General Community
+                        </strong>
 
-                        <div class="phone-title">
-                            People Online
-                        </div>
-
-                        <div class="online-users">
-
-                            <div class="avatar"></div>
-                            <div class="avatar"></div>
-                            <div class="avatar"></div>
-                            <div class="avatar"></div>
-                            <div class="avatar"></div>
-
-                        </div>
-
-                        <div class="community-title">
-                            Communities
-                        </div>
-
-                        <div class="community">
-                            <strong>General Community</strong>
-                            <span>Community Chat</span>
-                        </div>
-
-                        <div class="community">
-                            <strong>Private Community</strong>
-                            <span>Join conversations</span>
-                        </div>
+                        <small>
+                            Public Group
+                        </small>
 
                     </div>
+
+                    <span class="chat-time">
+                        Open
+                    </span>
+
+                </div>
+
+
+                <div class="chat-item">
+
+                    <div class="chat-avatar">
+                        C
+                    </div>
+
+                    <div class="chat-info">
+
+                        <strong>
+                            Community Chat
+                        </strong>
+
+                        <small>
+                            Public Group
+                        </small>
+
+                    </div>
+
+                    <span class="chat-time">
+                        Open
+                    </span>
+
+                </div>
+
+
+                <div class="chat-item">
+
+                    <div class="chat-avatar">
+                        P
+                    </div>
+
+                    <div class="chat-info">
+
+                        <strong>
+                            Private Community
+                        </strong>
+
+                        <small>
+                            Members Only
+                        </small>
+
+                    </div>
+
+                    <span class="chat-time">
+                        Private
+                    </span>
 
                 </div>
 
@@ -625,114 +1126,443 @@
 
     </div>
 
+</div>
+
 </section>
 
+
+<!-- =========================
+     TRUST STRIP
+========================= -->
 
 <section class="trust-strip">
 
-    <div class="trust-container">
+<div class="trust-container">
 
-        <div class="trust-item">
-            <div class="trust-icon">✓</div>
-            Simple Registration
-        </div>
+    <div class="trust-item">
 
-        <div class="trust-item">
-            <div class="trust-icon">✓</div>
-            Connect With People
-        </div>
+        <div class="trust-icon">✓</div>
 
-        <div class="trust-item">
-            <div class="trust-icon">✓</div>
-            Discover Communities
-        </div>
+        Simple Registration
 
     </div>
+
+    <div class="trust-item">
+
+        <div class="trust-icon">●</div>
+
+        Connect With People
+
+    </div>
+
+    <div class="trust-item">
+
+        <div class="trust-icon">G</div>
+
+        Discover Communities
+
+    </div>
+
+</div>
 
 </section>
 
 
-<section class="features" id="features">
+<!-- =========================
+     FEATURES
+========================= -->
 
-    <div class="section-container">
+<section class="section" id="features">
 
-        <div class="section-heading">
+<div class="section-heading">
 
-            <h2>
-                Everything You Need to
-                <span>Connect</span>
-            </h2>
+    <h2>
+        Everything You Need to
+        <span>Connect</span>
+    </h2>
 
-            <p>
-                STADENCHAT gives you a simple place to discover people,
-                conversations and communities.
-            </p>
+    <p>
+        STADENCHAT gives you a simple place to discover
+        people, conversations and communities.
+    </p>
 
+</div>
+
+
+<div class="feature-grid">
+
+    <div class="feature-card">
+
+        <div class="feature-icon">
+            ●
         </div>
 
+        <h3>
+            People Online
+        </h3>
 
-        <div class="feature-grid">
-
-            <div class="feature-card">
-
-                <div class="feature-icon">👥</div>
-
-                <h3>People Online</h3>
-
-                <p>
-                    See people who are online and connect with others
-                    on STADENCHAT.
-                </p>
-
-            </div>
-
-
-            <div class="feature-card">
-
-                <div class="feature-icon">💬</div>
-
-                <h3>Private Chat</h3>
-
-                <p>
-                    Have direct conversations and connect privately
-                    with other users.
-                </p>
-
-            </div>
-
-
-            <div class="feature-card">
-
-                <div class="feature-icon">👥</div>
-
-                <h3>Community Groups</h3>
-
-                <p>
-                    Discover groups, join conversations and become
-                    part of communities.
-                </p>
-
-            </div>
-
-
-            <div class="feature-card">
-
-                <div class="feature-icon">⚡</div>
-
-                <h3>Easy to Use</h3>
-
-                <p>
-                    A simple and clean platform designed to make
-                    connecting with people easy.
-                </p>
-
-            </div>
-
-        </div>
+        <p>
+            See members who are currently online
+            and available to interact.
+        </p>
 
     </div>
 
+
+    <div class="feature-card">
+
+        <div class="feature-icon">
+            +
+        </div>
+
+        <h3>
+            Private Chat
+        </h3>
+
+        <p>
+            Connect directly with other members
+            through private conversations.
+        </p>
+
+    </div>
+
+
+    <div class="feature-card">
+
+        <div class="feature-icon">
+            G
+        </div>
+
+        <h3>
+            Community Groups
+        </h3>
+
+        <p>
+            Find communities and participate in
+            conversations around shared interests.
+        </p>
+
+    </div>
+
+
+    <div class="feature-card">
+
+        <div class="feature-icon">
+            ✓
+        </div>
+
+        <h3>
+            Easy to Use
+        </h3>
+
+        <p>
+            A clean and straightforward experience
+            designed for easy communication.
+        </p>
+
+    </div>
+
+</div>
+
 </section>
+
+
+<!-- =========================
+     GROUPS
+========================= -->
+
+<section class="section groups-section" id="groups">
+
+<div class="section-heading">
+
+    <h2>
+        Discover <span>Communities</span>
+    </h2>
+
+    <p>
+        Choose from open public groups or exclusive
+        private communities.
+    </p>
+
+</div>
+
+
+<div class="group-grid">
+
+
+    <!-- PUBLIC -->
+
+    <div class="group-card">
+
+        <div class="group-top">
+
+            <div class="group-icon">
+                G
+            </div>
+
+            <div>
+
+                <h3>
+                    Public Groups
+                </h3>
+
+                <span class="group-label">
+                    Open Community
+                </span>
+
+            </div>
+
+        </div>
+
+        <p>
+            Public groups are open communities where
+            members can join and participate in
+            conversations.
+        </p>
+
+        <a href="register.html" class="group-button">
+            Explore Groups
+        </a>
+
+    </div>
+
+
+    <!-- PRIVATE -->
+
+    <div class="group-card private">
+
+        <div class="group-top">
+
+            <div class="group-icon">
+                P
+            </div>
+
+            <div>
+
+                <h3>
+                    Private Groups
+                </h3>
+
+                <span class="group-label">
+                    Exclusive Community
+                </span>
+
+            </div>
+
+        </div>
+
+        <p>
+            Private groups are exclusive communities.
+            Some groups may require a joining fee before
+            membership access is granted.
+        </p>
+
+        <a href="register.html" class="group-button">
+            Discover Private Groups
+        </a>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     HOW IT WORKS
+========================= -->
+
+<section class="section" id="how-it-works">
+
+<div class="section-heading">
+
+    <h2>
+        How <span>STADENCHAT</span> Works
+    </h2>
+
+    <p>
+        Start connecting in three simple steps.
+    </p>
+
+</div>
+
+
+<div class="steps">
+
+    <div class="step">
+
+        <div class="step-number">
+            1
+        </div>
+
+        <h3>
+            Create Your Account
+        </h3>
+
+        <p>
+            Register your STADENCHAT account
+            and set up your profile.
+        </p>
+
+    </div>
+
+
+    <div class="step">
+
+        <div class="step-number">
+            2
+        </div>
+
+        <h3>
+            Discover People & Groups
+        </h3>
+
+        <p>
+            Find people online and explore
+            communities that interest you.
+        </p>
+
+    </div>
+
+
+    <div class="step">
+
+        <div class="step-number">
+            3
+        </div>
+
+        <h3>
+            Start Connecting
+        </h3>
+
+        <p>
+            Join conversations and become
+            part of the community.
+        </p>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     CTA
+========================= -->
+
+<section class="cta">
+
+    <h2>
+        Your Community Starts Here.
+    </h2>
+
+    <p>
+        Create your STADENCHAT account and discover
+        a new way to connect with people.
+    </p>
+
+    <a href="register.html" class="cta-button">
+        Create Your Account
+    </a>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+<div class="footer-grid">
+
+
+    <div class="footer-brand">
+
+        <img src="stadenchat-logo.png" alt="STADENCHAT">
+
+        <p>
+            STADENCHAT is a social platform for
+            connecting people, conversations and
+            communities.
+        </p>
+
+    </div>
+
+
+    <div class="footer-column">
+
+        <h4>
+            Platform
+        </h4>
+
+        <a href="#features">
+            Features
+        </a>
+
+        <a href="#groups">
+            Groups
+        </a>
+
+        <a href="#how-it-works">
+            How It Works
+        </a>
+
+    </div>
+
+
+    <div class="footer-column">
+
+        <h4>
+            Account
+        </h4>
+
+        <a href="register.html">
+            Create Account
+        </a>
+
+        <a href="login.html">
+            Login
+        </a>
+
+    </div>
+
+
+    <div class="footer-column">
+
+        <h4>
+            Information
+        </h4>
+
+        <a href="#">
+            About STADENCHAT
+        </a>
+
+        <a href="#">
+            Privacy Policy
+        </a>
+
+        <a href="#">
+            Terms of Service
+        </a>
+
+        <a href="#">
+            Contact Us
+        </a>
+
+    </div>
+
+</div>
+
+
+<div class="footer-bottom">
+
+    © 2026 STADENCHAT. All rights reserved.
+
+</div>
+
+</footer>
 
 
 <script>
@@ -740,20 +1570,23 @@
 function toggleMenu(){
 
     const nav = document.querySelector(".nav-links");
-    const actions = document.querySelector(".nav-actions");
 
     if(nav.style.display === "flex"){
 
         nav.style.display = "none";
-        actions.style.display = "none";
 
     }else{
 
         nav.style.display = "flex";
-        actions.style.display = "flex";
-
         nav.style.flexDirection = "column";
-        actions.style.flexDirection = "column";
+        nav.style.position = "absolute";
+        nav.style.top = "68px";
+        nav.style.left = "0";
+        nav.style.right = "0";
+        nav.style.background = "#ffffff";
+        nav.style.padding = "20px";
+        nav.style.borderBottom = "1px solid #eeeeee";
+        nav.style.zIndex = "999";
 
     }
 
